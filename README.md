@@ -10,7 +10,7 @@ Key features:
 
 ## Usage
 
-Import the library
+Import the library.
 
 ```javascript
 const Pore = require('pore')
@@ -30,7 +30,7 @@ pore.register('Database', () => {
 })
 ```
 
-Call constructor functions by their **logical** names;
+Call constructor functions by their **logical** names.
 
 ```javascript
 pore.get('Database')
