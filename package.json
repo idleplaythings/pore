@@ -1,0 +1,31 @@
+{
+  "name": "pore",
+  "version": "0.1.0",
+  "description": "A simple dependency injection container for JavaScript",
+  "main": "pore.js",
+  "scripts": {
+    "test": "mocha poreSpec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idleplaythings/pore.git"
+  },
+  "keywords": [
+    "dependency",
+    "injection",
+    "container",
+    "ioc",
+    "inversion",
+    "control"
+  ],
+  "author": "Niko Nevala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/idleplaythings/pore/issues"
+  },
+  "homepage": "https://github.com/idleplaythings/pore#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
+}

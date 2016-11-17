@@ -1,71 +1,75 @@
-# Dependency Injection Container
+# Pore (dependency injection container)
 
-A super simple Dependency Injection Container for applying the [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control) principle in JavaScript.
+A super simple dependency injection container for applying the [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control) principle in JavaScript.
+
+Key features:
+
+* Simple API (see below)
+* 100 lines of code or less
+* No dependencies
 
 ## Usage
 
 Instantiate the container.
 
-    var dic = new DIC();
-    
+    let pore = new Pore()
+
 Register constructor functions by their **logical** names.
 
-    dic.register('Database', function() {
-        return new MongoloidDatabaseAdapter();
+    pore.register('Database', () => {
+        return new MongoloidDatabaseAdapter()
     });
-    
+
 Call constructor functions by their **logical** names;
 
-    dic.get('Database');
+    pore.get('Database')
     // a new instance of MongoloidDatabaseAdapter
-    
+
 Chain constructors to build **object graphs**.
 
-    dic.register('Service', function(dic) {
+    pore.register('Service', (pore) => {
         return new Service(
-            dic.get('Database') // <-- This is where the magic happens
+            pore.get('Database') // <-- This is where the magic happens
         );
     });
-    
+
 Throw some **scalar values** at it, too.
 
-    dic.register('Pi', 3.14);
-    
+    pore.register('Pi', 3.14);
+
     dig.get('Pi')
     // 3.14
-    
-Flag constructors shared to only construct a **single instance** of your thing.
 
-    dic.register('SharedService', function() {
+Flag constructors as _shared_ to only construct a **single instance** of your thing.
+
+    pore.register('SharedService', () => {
         return new SharedService();
     }, {
         shared: true
     });
-    
+
 **Tag** constructor functions, and get logical names associated with tags.
 
-    dic.register('one', 1, { tags: [ 'number' ]);
-    dic.register('two', 2, { tags: [ 'number' ]);
-    dic.register('carrot', '???', { tags: [ 'vegetable' ]);
-    
-    dic.getTagged('number'); 
-    // [ 'one', 'two' ]
-    
-**Bonus feature:** extract a subset (defined by tag) of the registered constructors into a completely new DIC. (If you are wondering *why*, try and think of this as a FactoryFactory).
+    pore.register('one', 1, { tags: [ 'number' ]);
+    pore.register('two', 2, { tags: [ 'number' ]);
+    pore.register('carrot', '???', { tags: [ 'vegetable' ]);
 
-    dic.register('one', 1, { tags: [ 'number' ]);
-    dic.register('two', 2, { tags: [ 'number' ]);
-    dic.register('carrot', '???', { tags: [ 'vegetable' ]);
-    
-    dic.createNewFromTag('number');
-    // returns a completely fresh DIC with 'one' and 'two'
-    
+    pore.getTagged('number');
+    // [ 'one', 'two' ]
+
+**Bonus feature:** extract a subset (defined by a tag) of the registered constructors into a completely new pore. (If you are wondering *why*, try and think of this as a FactoryFactory).
+
+    pore.register('one', 1, { tags: [ 'number' ]);
+    pore.register('two', 2, { tags: [ 'number' ]);
+    pore.register('carrot', '???', { tags: [ 'vegetable' ]);
+
+    pore.createNewFromTag('number');
+    // returns a completely fresh Pore with 'one' and 'two'
+
 ## Specs
 
-It's [fully tested](spec/DICSpec.js).
+It's [fully tested](poreSpec.js).
 
 ## License
 
 Licensed under MIT license.
-
-    
