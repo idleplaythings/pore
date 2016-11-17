@@ -10,6 +10,10 @@ Key features:
 
 ## Usage
 
+Import the library
+
+    const Pore = require('pore')
+
 Instantiate the container.
 
     let pore = new Pore()
