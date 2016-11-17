@@ -17,7 +17,7 @@ Instantiate the container.
 Register constructor functions by their **logical** names.
 
     pore.register('Database', () => {
-        return new MongoloidDatabaseAdapter()
+      return new MongoloidDatabaseAdapter()
     });
 
 Call constructor functions by their **logical** names;
@@ -28,24 +28,23 @@ Call constructor functions by their **logical** names;
 Chain constructors to build **object graphs**.
 
     pore.register('Service', (pore) => {
-        return new Service(
-            pore.get('Database') // <-- This is where the magic happens
-        );
+      return new Service(
+        pore.get('Database') // <-- This is where the magic happens
+      );
     });
 
 Throw some **scalar values** at it, too.
 
     pore.register('Pi', 3.14);
-
-    dig.get('Pi')
+    pore.get('Pi')
     // 3.14
 
 Flag constructors as _shared_ to only construct a **single instance** of your thing.
 
     pore.register('SharedService', () => {
-        return new SharedService();
+      return new SharedService();
     }, {
-        shared: true
+      shared: true
     });
 
 **Tag** constructor functions, and get logical names associated with tags.
