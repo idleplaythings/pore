@@ -5,8 +5,8 @@ A super simple dependency injection container for applying the [Inversion of Con
 Key features:
 
 * Simple API (see below)
-* 100 lines of code or less
-* No dependencies
+* [100 lines of code or less](pore.js)
+* [No dependencies](package.json)
 
 ## Usage
 
