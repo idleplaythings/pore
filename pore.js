@@ -1,4 +1,3 @@
-
 class Pore {
   constructor() {
     this._registry = {}
@@ -52,13 +51,11 @@ class Pore {
     this._getTagsFromOptions(options).forEach((tag) => this._tag(name, tag))
   }
 
-  isMarkedShared(name)
-  {
+  isMarkedShared(name) {
     return Object.keys(this._shared).indexOf(name) !== -1;
   }
 
-  _instantiateShared(name)
-  {
+  _instantiateShared(name) {
     this._shared[name] = this._shared[name] || this._create(name);
   }
 
@@ -74,18 +71,15 @@ class Pore {
     return this._registry[name];
   };
 
-  _sharedOptionEnabled(options)
-  {
+  _sharedOptionEnabled(options) {
     return Boolean(options.shared)
   };
 
-  _markAsShared(name)
-  {
+  _markAsShared(name) {
     this._shared[name] = null;
   };
 
-  _getTagsFromOptions(options)
-  {
+  _getTagsFromOptions(options) {
     if (options.tags instanceof Array) {
       return options.tags;
     }
@@ -93,8 +87,7 @@ class Pore {
     return [];
   };
 
-  _tag(name, tag)
-  {
+  _tag(name, tag) {
     if (typeof this._tags[tag] === 'undefined') {
       this._tags[tag] = [];
     }
