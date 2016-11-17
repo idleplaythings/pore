@@ -65,6 +65,45 @@ Flag constructors as _shared_ to only construct a **single instance** of your th
     pore.createNewFromTag('number');
     // returns a completely fresh Pore with 'one' and 'two'
 
+## API
+
+### pore.register(name, item[, options]) : undefined
+
+| Parameter | Type | Description
+| --- | --- | ---
+| name | string | Logical name of the item. Use this to also get the item.
+| item | * | Anything you want to store against the logical name. If the item is of type _function_ the pore instance will be passed as the first argument.
+| options | object | _Optional_. See below.
+
+Options:
+
+| Option | Type | Description
+| --- | --- | ---
+| shared | boolean | _Optional_. If set, and if the item is of type _function_, the function will only be executed once and the result returned every time you get it from pore.
+| tags | array of strings | _Optional_. Tags associated with the item
+
+### pore.get(name) : *
+
+| Parameter     | Type          | Description
+| ------------- | ------------- | ---
+| name          | string        | Logical name of the item to get.
+
+### pore.getTagged(tag) : [*]
+
+Parameters:
+
+| Parameter     | Type          | Description
+| ------------- | ------------- | ---
+| tag           | string        | Get items with this tag.
+
+### pore.createNewFromTag(tag) : pore
+
+Paramters:
+
+| Parameter     | Type          | Description
+| ------------- | ------------- | ---
+| tag           | string        | Create new pore out of items with this tag.
+
 ## Specs
 
 It's [fully tested](poreSpec.js).
